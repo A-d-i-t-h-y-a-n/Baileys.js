@@ -59,10 +59,10 @@ export declare const decodeSyncdSnapshot: (name: WAPatchName, snapshot: proto.IS
     state: LTHashState;
     mutationMap: ChatMutationMap;
 }>;
-export declare const decodePatches: (name: WAPatchName, syncds: proto.ISyncdPatch[], initial: LTHashState, getAppStateSyncKey: FetchAppStateSyncKey, options: AxiosRequestConfig<any>, minimumVersionNumber?: number, logger?: any, validateMacs?: boolean) => Promise<{
+export declare const decodePatches: (name: WAPatchName, syncds: proto.ISyncdPatch[], initial: LTHashState, getAppStateSyncKey: FetchAppStateSyncKey, options: AxiosRequestConfig<any>, minimumVersionNumber?: number | undefined, logger?: any, validateMacs?: boolean) => Promise<{
     state: LTHashState;
     mutationMap: ChatMutationMap;
 }>;
 export declare const chatModificationToAppPatch: (mod: ChatModification, jid: string) => WAPatchCreate;
-export declare const processSyncAction: (syncAction: ChatMutation, ev: BaileysEventEmitter, me: Contact, initialSyncOpts?: InitialAppStateSyncOptions, logger?: any) => void;
+export declare const processSyncAction: (syncAction: ChatMutation, ev: BaileysEventEmitter, me: Contact, initialSyncOpts?: InitialAppStateSyncOptions | undefined, logger?: any) => void;
 export {};

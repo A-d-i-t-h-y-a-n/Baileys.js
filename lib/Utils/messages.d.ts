@@ -10,13 +10,13 @@ import { MediaDownloadOptions } from './messages-media';
 export declare const extractUrlFromText: (text: string) => string | undefined;
 export declare const generateLinkPreviewIfRequired: (text: string, getUrlInfo: MessageGenerationOptions['getUrlInfo'], logger: MessageGenerationOptions['logger']) => Promise<import("../Types").WAUrlInfo | undefined>;
 export declare const prepareWAMessageMedia: (message: AnyMediaMessageContent, options: MediaGenerationOptions) => Promise<proto.Message>;
-export declare const prepareDisappearingMessageSettingContent: (ephemeralExpiration?: number) => proto.Message;
+export declare const prepareDisappearingMessageSettingContent: (ephemeralExpiration?: number | undefined) => proto.Message;
 /**
  * Generate forwarded message content like WA does
  * @param message the message to forward
  * @param options.forceForward will show the message as forwarded even if it is from you
  */
-export declare const generateForwardMessageContent: (message: WAMessage, forceForward?: boolean) => proto.IMessage;
+export declare const generateForwardMessageContent: (message: WAMessage, forceForward?: boolean | undefined) => proto.IMessage;
 export declare const generateWAMessageContent: (message: AnyMessageContent, options: MessageContentGenerationOptions) => Promise<proto.Message>;
 export declare const generateWAMessageFromContent: (jid: string, message: WAMessageContent, options: MessageGenerationOptionsFromContent) => proto.WebMessageInfo;
 export declare const generateWAMessage: (jid: string, content: AnyMessageContent, options: MessageGenerationOptions) => Promise<proto.WebMessageInfo>;
@@ -68,7 +68,7 @@ declare type DownloadMediaMessageContext = {
 /**
  * Downloads the given message. Throws an error if it's not a media message
  */
-export declare const downloadMediaMessage: <Type extends "buffer" | "stream">(message: WAMessage, type: Type, options: MediaDownloadOptions, ctx?: DownloadMediaMessageContext) => Promise<Type extends "buffer" ? Buffer : Transform>;
+export declare const downloadMediaMessage: <Type extends "buffer" | "stream">(message: WAMessage, type: Type, options: MediaDownloadOptions, ctx?: DownloadMediaMessageContext | undefined) => Promise<Type extends "buffer" ? Buffer : Transform>;
 /** Checks whether the given message is a media message; if it is returns the inner content */
 export declare const assertMediaContent: (content: proto.IMessage | null | undefined) => proto.Message.IVideoMessage | proto.Message.IImageMessage | proto.Message.IAudioMessage | proto.Message.IDocumentMessage | proto.Message.IStickerMessage;
 export {};

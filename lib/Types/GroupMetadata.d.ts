@@ -4,7 +4,9 @@ export declare type GroupParticipant = (Contact & {
     isSuperAdmin?: boolean;
     admin?: 'admin' | 'superadmin' | null;
 });
-export declare type ParticipantAction = 'add' | 'remove' | 'promote' | 'demote';
+export declare type ParticipantAction = 'add' | 'remove' | 'promote' | 'demote' | 'modify';
+export declare type RequestJoinAction = 'created' | 'revoked' | 'rejected';
+export declare type RequestJoinMethod = 'invite_link' | 'linked_group_join' | 'non_admin_add' | undefined;
 export interface GroupMetadata {
     id: string;
     owner: string | undefined;
