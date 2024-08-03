@@ -1,5 +1,5 @@
 import { proto } from '../../WAProto';
-import { ChatModification, MessageUpsertType, SocketConfig, WABusinessProfile, WAMediaUpload, WAPatchCreate, WAPresence, WAPrivacyOnlineValue, WAPrivacyValue, WAReadReceiptsValue } from '../Types';
+import { ChatModification, MessageUpsertType, SocketConfig, WABusinessProfile, WAMediaUpload, WAPatchCreate, WAPresence, WAPrivacyCallValue, WAPrivacyOnlineValue, WAPrivacyValue, WAReadReceiptsValue } from '../Types';
 import { BinaryNode } from '../WABinary';
 export declare const makeChatsSocket: (config: SocketConfig) => {
     processingMutex: {
@@ -10,9 +10,9 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
     }>;
     upsertMessage: (msg: proto.IWebMessageInfo, type: MessageUpsertType) => Promise<void>;
     appPatch: (patchCreate: WAPatchCreate) => Promise<void>;
-    sendPresenceUpdate: (type: WAPresence, toJid?: string) => Promise<void>;
+    sendPresenceUpdate: (type: WAPresence, toJid?: string | undefined) => Promise<void>;
     presenceSubscribe: (toJid: string, tcToken?: any) => Promise<void>;
-    profilePictureUrl: (jid: string, type?: 'preview' | 'image', timeoutMs?: number) => Promise<string | undefined>;
+    profilePictureUrl: (jid: string, type?: 'preview' | 'image', timeoutMs?: number | undefined) => Promise<string | undefined>;
     onWhatsApp: (...jids: string[]) => Promise<{
         exists: boolean;
         jid: string;
@@ -27,6 +27,7 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
     updateProfileStatus: (status: string) => Promise<void>;
     updateProfileName: (name: string) => Promise<void>;
     updateBlockStatus: (jid: string, action: 'block' | 'unblock') => Promise<void>;
+    updateCallPrivacy: (value: WAPrivacyCallValue) => Promise<void>;
     updateLastSeenPrivacy: (value: WAPrivacyValue) => Promise<void>;
     updateOnlinePrivacy: (value: WAPrivacyOnlineValue) => Promise<void>;
     updateProfilePicturePrivacy: (value: WAPrivacyValue) => Promise<void>;
@@ -37,7 +38,7 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
     getBusinessProfile: (jid: string) => Promise<WABusinessProfile | void>;
     resyncAppState: (collections: readonly ("critical_block" | "critical_unblock_low" | "regular_high" | "regular_low" | "regular")[], isInitialSync: boolean) => Promise<void>;
     chatModify: (mod: ChatModification, jid: string) => Promise<void>;
-    cleanDirtyBits: (type: 'account_sync' | 'groups', fromTimestamp?: number | string) => Promise<void>;
+    cleanDirtyBits: (type: 'account_sync' | 'groups', fromTimestamp?: string | number | undefined) => Promise<void>;
     addChatLabel: (jid: string, labelId: string) => Promise<void>;
     removeChatLabel: (jid: string, labelId: string) => Promise<void>;
     addMessageLabel: (jid: string, messageId: string, labelId: string) => Promise<void>;

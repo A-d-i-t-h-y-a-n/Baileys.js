@@ -18,7 +18,7 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
         jid: string;
         content: BinaryNode;
     }[]>;
-    groupUpdateDescription: (jid: string, description?: string) => Promise<void>;
+    groupUpdateDescription: (jid: string, description?: string | undefined) => Promise<void>;
     groupInviteCode: (jid: string) => Promise<string | undefined>;
     groupRevokeInvite: (jid: string) => Promise<string | undefined>;
     groupAcceptInvite: (code: string) => Promise<string | undefined>;
@@ -61,6 +61,7 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
     updateProfileStatus: (status: string) => Promise<void>;
     updateProfileName: (name: string) => Promise<void>;
     updateBlockStatus: (jid: string, action: "block" | "unblock") => Promise<void>;
+    updateCallPrivacy: (value: import("../Types").WAPrivacyCallValue) => Promise<void>;
     updateLastSeenPrivacy: (value: import("../Types").WAPrivacyValue) => Promise<void>;
     updateOnlinePrivacy: (value: import("../Types").WAPrivacyOnlineValue) => Promise<void>;
     updateProfilePicturePrivacy: (value: import("../Types").WAPrivacyValue) => Promise<void>;

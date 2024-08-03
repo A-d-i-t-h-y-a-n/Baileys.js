@@ -7,7 +7,7 @@ export declare const makeBusinessSocket: (config: SocketConfig) => {
         products: import("../Types").Product[];
         nextPageCursor: any;
     }>;
-    getCollections: (jid?: string, limit?: number) => Promise<{
+    getCollections: (jid?: string | undefined, limit?: number) => Promise<{
         collections: import("../Types").CatalogCollection[];
     }>;
     productCreate: (create: ProductCreate) => Promise<import("../Types").Product>;
@@ -34,17 +34,6 @@ export declare const makeBusinessSocket: (config: SocketConfig) => {
     }>;
     updateMediaMessage: (message: import("../Types").WAProto.IWebMessageInfo) => Promise<import("../Types").WAProto.IWebMessageInfo>;
     sendMessage: (jid: string, content: import("../Types").AnyMessageContent, options?: import("../Types").MiscMessageGenerationOptions) => Promise<import("../Types").WAProto.WebMessageInfo | undefined>;
-    getNewsletterInfo: (key: string) => Promise<import("../Types").NewsLetterMetadata>;
-    createNewsLetter: (name: string, desc?: string | undefined, picture?: any) => Promise<import("../Types").NewsLetterMetadata>;
-    getSubscribedNewsletters: () => Promise<import("../Types").NewsLetterMetadata[]>;
-    toggleMuteNewsletter: (jid: string, mute: boolean) => Promise<any>;
-    followNewsletter: (jid: string) => Promise<any>;
-    unFollowNewsletter: (jid: string) => Promise<any>;
-    updateNewsletterName: (jid: string, name: string) => Promise<import("../Types").NewsLetterMetadata>;
-    updateNewsletterDesc: (jid: string, description: string) => Promise<import("../Types").NewsLetterMetadata>;
-    updateNewsletterPicture: (jid: string, picture: any) => Promise<import("../Types").NewsLetterMetadata>;
-    updateNewsletterReactionSetting: (jid: string, value: import("../Types").RectionSettingsNewsletter) => Promise<import("../Types").NewsLetterMetadata>;
-    removeNewsletterPicture: (jid: string) => Promise<import("../Types").NewsLetterMetadata>;
     groupMetadata: (jid: string) => Promise<import("../Types").GroupMetadata>;
     groupCreate: (subject: string, participants: string[]) => Promise<import("../Types").GroupMetadata>;
     groupLeave: (id: string) => Promise<void>;
@@ -96,6 +85,7 @@ export declare const makeBusinessSocket: (config: SocketConfig) => {
     updateProfileStatus: (status: string) => Promise<void>;
     updateProfileName: (name: string) => Promise<void>;
     updateBlockStatus: (jid: string, action: "block" | "unblock") => Promise<void>;
+    updateCallPrivacy: (value: import("../Types").WAPrivacyCallValue) => Promise<void>;
     updateLastSeenPrivacy: (value: import("../Types").WAPrivacyValue) => Promise<void>;
     updateOnlinePrivacy: (value: import("../Types").WAPrivacyOnlineValue) => Promise<void>;
     updateProfilePicturePrivacy: (value: import("../Types").WAPrivacyValue) => Promise<void>;
